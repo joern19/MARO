@@ -15,16 +15,16 @@ public class NewGamePanel extends JPanel {
 	protected JTextField tf;
 	
 	public NewGamePanel() {
+	
 		setLayout(new FlowLayout());
-		
 		
 		tf = new JTextField(30);
 		startButton = new JButton("Start!");
-		
 		
 		add(new JLabel("Name: "));
 		add(tf);
 		
 		add(startButton);
+
 	}
 }
