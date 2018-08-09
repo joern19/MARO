@@ -42,12 +42,12 @@ public class Gameloop implements Runnable {
 		
 		startFrame.run();
 		
-		/*beim Fensterschließen*/
+		/*beim Fensterschlieen*/
 		
-		//gibt den neu erstellten Spieler als String zurück
+		//gibt den neu erstellten Spieler als String zurck
 		startFrame.getNewPlayerName();
 		
-		//gibt den geladenen Spieler als String zurück
+		//gibt den geladenen Spieler als String zurck
 		startFrame.getLoadedPlayerName();
 		
 		gameframe.setVisible(true);
