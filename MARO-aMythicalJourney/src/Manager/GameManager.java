@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Frame;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import Manager.InputManager.Event;
 import Manager.SoundManager.Sound;
@@ -43,8 +44,8 @@ public class GameManager implements InputListener {
 		events = new ArrayList<Event>();
 		npcs = new ArrayList<NPC>();
 		
-		npcs.add(new Spider());
-		npcs.add(new Goblin());
+		npcs.add(new Spider(128, 128));
+		npcs.add(new Goblin(64, 64));
 		
 		
 		inventory = Inventory.getInstance();
@@ -57,6 +58,16 @@ public class GameManager implements InputListener {
 		showInventory = true;
 	}
 
+	public void spawnNpc() {
+		int x ,y ;
+		
+		x = new Random().nextInt(12*64);
+		y = new Random().nextInt(8*64);
+		
+		npcs.add(new Spider(x, y));
+		
+	}
+	
 	public void initInputManager(Frame frame) {
 		InputManager.getInstance().setFrame(frame);
 		InputManager.getInstance().setInputListener(this);
@@ -345,5 +356,9 @@ public class GameManager implements InputListener {
 	@Override
 	public void onEvent(Event event) {
 		events.add(event);
+	}
+
+	public void clearNpc() {
+		npcs.clear();
 	}
 }
