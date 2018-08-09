@@ -153,7 +153,7 @@ public class NPC {
 		int yMove = 0;
 		
 		// es wird sich nur bewegt, wenn der Abstand zur Spielerkooridinate relevant
-		// groß ist
+		// gro ist
 		if ((currentPlayer.GetXPosition() - this.x) > this.moveSpeed) {				
 			xMove += this.moveSpeed;
 		} else if ((currentPlayer.GetXPosition() - this.x) < -this.
