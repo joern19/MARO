@@ -22,7 +22,7 @@ public class NPC {
 	
 	private BufferedImage sprite;
 
-	public NPC(int hp, int speed, int spriteWidth, int spriteHeight, int retreatFrames, int retreatSpeed, BufferedImage sprite) {
+	public NPC(int hp, int speed, int spriteWidth, int spriteHeight, int retreatFrames, int retreatSpeed, BufferedImage sprite, int x, int y) {
 		this.healthPoints = hp;
 		this.moveSpeed = speed;
 		this.Width = spriteWidth;
@@ -30,6 +30,9 @@ public class NPC {
 		this.retreatFrames = retreatFrames;
 		this.retreatSpeed = retreatSpeed;
 		this.retreatFrameCounter = 0;
+		
+		this.x = x;
+		this.y = y;
 		
 		this.sprite = sprite;
 	}

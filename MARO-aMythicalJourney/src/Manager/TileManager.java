@@ -106,6 +106,9 @@ public class TileManager {
     }
 
     public void loadMap(Integer mapId) {
+    	GameManager.getInstance().clearNpc();
+    	GameManager.getInstance().spawnNpc();
+    	GameManager.getInstance().spawnNpc();
         switch (mapId) {
             case 0:
                 map1 = new Tile[][]{
