@@ -1,0 +1,30 @@
+Gameloop:
+	Gameloop Classe geschrieben
+
+Inventory:
+	Inventory Class
+	Item Class
+		Weapon Class
+			Sword Class
+			Bomb  Class
+		Boat   Class
+- Moritz
+
+InputManager:
+	InputManager classe erstellt und geschrieben
+
+NPC:
+	NPC class mit movement erstellt - Jan 17.07.
+		Spider Class - Jan 17.07.
+		Goblin Class - Jan 17.07.
+
+CollisionManager:
+	Erstellt - Jan 17.07.
+
+MARO-aMythicalJourney:
+	Created
+	added Gameloop
+	added Rendering
+	added Gameframe
+	added Inputmanager
+	added Inventory
