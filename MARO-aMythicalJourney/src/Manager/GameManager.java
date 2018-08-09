@@ -4,26 +4,20 @@ import java.awt.Color;
 import java.awt.Frame;
 import java.util.ArrayList;
 import java.util.List;
-import Manager.InputManager;
+
 import Manager.InputManager.Event;
 import Manager.SoundManager.Sound;
-import Rendering.GameImage;
-import Rendering.GameText;
-import Manager.TileManager;
 import Manager.TileManager.Tile;
-
-import Npc.*;
-
 import Npc.Goblin;
 import Npc.NPC;
 import Npc.Spider;
-import Objects.Bomb;
 import Objects.Inventory;
-import Objects.Inventory.InventoryItem;
 import Objects.Item;
 import Objects.MapItem;
 import Objects.Player;
 import Objects.Player.Movement;
+import Rendering.GameImage;
+import Rendering.GameText;
 
 public class GameManager implements InputListener {
 
