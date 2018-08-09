@@ -39,7 +39,7 @@ public class GameManager implements InputListener {
 	private GameManager() {
 		//GameSaver.loadFile();
 		//PlayerOne = GameSaver.loadPlayer();
-		PlayerOne = new Player(64, 64, "");
+		PlayerOne = new Player(64, 64 * 4, "");
 		events = new ArrayList<Event>();
 		npcs = new ArrayList<NPC>();
 		
@@ -53,7 +53,7 @@ public class GameManager implements InputListener {
 		itemManager.addItem("2", new MapItem("Bomb", true, true, 320, 320, 64, 64, "bomb.png"));
 		itemManager.addItem("2", new MapItem("Bomb", true, true, 320, 200, 64, 64, "bomb.png"));
 
-		Inventory.getInstance().addCoins(40);;
+		Inventory.getInstance().addCoins(40);
 		showInventory = true;
 	}
 
