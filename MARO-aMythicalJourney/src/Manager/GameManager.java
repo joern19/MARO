@@ -225,8 +225,7 @@ public class GameManager implements InputListener {
 				break;
 			}
 		}
-		}
-		else if(inMenu) {
+		} else if(inMenu) {
 			for (int i = 0; i < events.size(); i++) {
 				Event event = events.remove(i);
 				switch(event) {

@@ -15,6 +15,7 @@ import Rendering.IOUtils;
 //5(0-4) Slots(Typ Item) + coins
 
 public class Inventory {
+	
 	private static Inventory instance = null;
 	private int coins;
 	private int selectedItem;

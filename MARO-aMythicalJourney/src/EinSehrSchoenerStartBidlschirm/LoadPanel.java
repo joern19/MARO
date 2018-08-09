@@ -33,7 +33,6 @@ public class LoadPanel extends JPanel {
 			sbuttons[i] = new JButton(s);
 			jp.add(sbuttons[i]);
 			
-			
 			i++;
 		}
 		

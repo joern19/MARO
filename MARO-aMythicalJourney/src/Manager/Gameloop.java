@@ -26,11 +26,10 @@ public class Gameloop implements Runnable {
 
 	public Gameloop() {
 		
-		
 		gameframe = new GameFrame("MARO", 64 * 12, (64 * 8) + 20);
 		GameManager.getInstance().initInputManager(gameframe);
 		
-		startFrame = new StartFrame("MARO - StartScreen", new String[] {"tom", "kevin"});
+		startFrame = new StartFrame("MARO - StartScreen", new String[] {"Test"});
 	}
 
 	public void setRunning(boolean running) {
@@ -52,10 +51,6 @@ public class Gameloop implements Runnable {
 		
 		gameframe.setVisible(true);
 
-		
-		
-		
-		
 		while (running) {
 			long now = System.nanoTime();
 			long updateLength = now - lastLoopTime;
@@ -109,8 +104,8 @@ public class Gameloop implements Runnable {
 
 	private void doGameUpdates(double delta) {
 		GameManager.getInstance().update();
-		/*sound++;
-		if(sound==3) {
+		//sound++;
+		/*if(sound==3) {
 			SoundManager.getInstance().loadSound(Sound.TEST);
 			SoundManager.getInstance().loadSound(Sound.TEST2);
 			SoundManager.getInstance().playSound(Sound.TEST);
