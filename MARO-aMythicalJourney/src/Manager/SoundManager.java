@@ -55,8 +55,7 @@ public class SoundManager {
             clip.setMicrosecondPosition(0);
             clip.start();
         } catch (Exception ex) {
-            loadSound(sound);
-            playSound(sound);
+            ex.printStackTrace();
         }
     }
 
