@@ -23,7 +23,6 @@ public class TileManager {
     private HashMap<String, BufferedImage> tileImages;
     private Point currMapPosition;
 
-    //private static int[][] map;
     private static int[][] mapMap;
 
     public TileManager() {
@@ -296,7 +295,7 @@ public class TileManager {
         return map1[y][x];
     }
 
-    public void RemoveObstacle(int indexOne, int indexTwo) {
+    public static void RemoveObstacle(int indexOne, int indexTwo) {
         obstacle1[indexOne][indexTwo] = Tile.IS_EMPTY;
     }
 
