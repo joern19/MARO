@@ -101,6 +101,10 @@ public class Player {
 		this.CurrentDirection = movement;
 	}
 	
+        public Movement getPlayerDirection() {
+		return this.CurrentDirection;
+	}
+        
 //COLLISION
 	public Rectangle getBoundingBox() {
 		return new Rectangle(XPosition+1, YPosition+1, 64-1, 64-1);
