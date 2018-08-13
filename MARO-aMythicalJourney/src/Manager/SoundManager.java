@@ -53,6 +53,7 @@ public class SoundManager {
     
     public void playSound(Sound sound) {
         try {
+            loadSound(sound);
             Clip clip = list.get(sound);
             clip.setMicrosecondPosition(0);
             clip.start();
