@@ -30,7 +30,7 @@ public class SoundManager {
     private void loadSound(Sound sound) {
         if (!list.containsKey(sound)) {
             try {
-                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(sound.getPath()));
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.getClass().getResourceAsStream(sound.getPath()));
                 AudioFormat af = audioInputStream.getFormat();
                 int size = (int) (af.getFrameSize() * audioInputStream.getFrameLength());
                 byte[] audio = new byte[size];
@@ -53,22 +53,18 @@ public class SoundManager {
     
     public void playSound(Sound sound) {
         try {
-            if (!list.containsKey(sound)) {
-                loadSound(sound);
-            }
             Clip clip = list.get(sound);
             clip.setMicrosecondPosition(0);
             clip.start();
         } catch (Exception ex) {
-            loadSound(sound);
-            playSound(sound);
+            ex.printStackTrace();
         }
     }
 
     public enum Sound {
 
-        TEST("src/Sounds/glassbell.wav"),
-        TEST2("src/Sounds/chipquest.wav");
+        TEST("/Sounds/glassbell.wav"),
+        TEST2("/Sounds/chipquest.wav");
 
         String path;
 
