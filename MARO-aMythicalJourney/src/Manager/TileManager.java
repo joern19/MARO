@@ -106,6 +106,7 @@ public class TileManager {
     }
 
     public void loadMap(Integer mapId) {
+        //Maps have to be load out from a file to change obstacales.
     	GameManager.getInstance().clearNpc();
     	GameManager.getInstance().spawnNpc();
     	GameManager.getInstance().spawnNpc();
@@ -296,7 +297,7 @@ public class TileManager {
         return map1[y][x];
     }
 
-    public void RemoveObstacle(int indexOne, int indexTwo) {
+    public static void RemoveObstacle(int indexOne, int indexTwo) {
         obstacle1[indexOne][indexTwo] = Tile.IS_EMPTY;
     }
 
@@ -304,7 +305,7 @@ public class TileManager {
         return MapID;
     }
 
-    public Tile getObstacalFromMap1(int y, int x) {
+    public static Tile getObstacal(int y, int x) {
         return obstacle1[y][x];
     }
 
@@ -358,8 +359,8 @@ public class TileManager {
         GRASS(false, true), STONE(true, false), TREE_TOP(true, false), TREE_BUTTOM(true,
                 false), WATER(false, false), IS_EMPTY(false, true);
 
-        boolean isObstacal;
-        boolean allowWalkOn;
+        private boolean isObstacal;
+        private boolean allowWalkOn;
 
         private Tile(boolean isObstacal, boolean allowWalkOn) {
             this.isObstacal = isObstacal;
