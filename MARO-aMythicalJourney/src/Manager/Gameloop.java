@@ -85,7 +85,7 @@ public class Gameloop implements Runnable {
 		
 		// Items for map
 		list.addAll(GameManager.getInstance().getItemsToRender());
-
+		
 		// PLAYER
 		list.add(GameManager.getInstance().getPlayerToRender());
 		
@@ -95,6 +95,8 @@ public class Gameloop implements Runnable {
 		List<GameText> textList = new ArrayList<GameText>();
 		textList.add(GameManager.getInstance().getCoinsToRender());
 
+		textList.addAll(GameManager.getInstance().getInventory().getInventoryAmountToRender());
+		
 		textList.add(new GameText("LP:   "+GameManager.getInstance().GetPlayer().GetHealth(), 325, 40, 0, 0, "Helvetica", Color.BLACK, 20));
 		
 		gameframe.setText(textList);

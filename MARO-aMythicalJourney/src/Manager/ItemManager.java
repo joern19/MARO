@@ -81,7 +81,8 @@ public class ItemManager {
                 Tile toDestroy = TileManager.getObstacal(y, x);
                 if (toDestroy.isObstacal()) {
                     TileManager.RemoveObstacle(y, x);
-                    //remove Inventory Item..
+                    Inventory.getInstance().dropRandomCoins(x, y);
+                    Inventory.getInstance().removeCurrentItem();
                 }
             }
         }

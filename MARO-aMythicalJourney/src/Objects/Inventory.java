@@ -1,13 +1,12 @@
 package Objects;
 
 import java.awt.Color;
-import java.awt.event.ItemEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 
 import Manager.GameManager;
-import Rendering.GameFrame;
+import Manager.TileManager.Tile;
 import Rendering.GameImage;
 import Rendering.GameText;
 import Rendering.IOUtils;
@@ -41,6 +40,10 @@ public class Inventory {
     public void setSelectedItem(int chosenItem) {
         this.selectedItem = chosenItem;
     }
+    
+    public void removeCurrentItem() {
+    	inventory[selectedItem] = new InventoryItem(new Item("", false, false), 1);
+    }
 
     public void setCoins(int coins) {
         this.coins = coins;
@@ -58,7 +61,7 @@ public class Inventory {
         setCoins(getCoins() - coins);
     }
 
-    public void dropRandomCoins() {
+    public void dropRandomCoins(int x, int y) {
         int rnmnr = new Random().nextInt(10);
         addCoins(rnmnr);
         // Drop Item on Stone Position
@@ -110,7 +113,9 @@ public class Inventory {
 
         for (int i = 0; i < inventory.length; i++) {
             if (inventory[i] != null) {
-                images.add(new GameImage(((MapItem) inventory[i].item).getImageToRender(), 268 + (i * 64), 434));
+            	if(!(inventory[i].getItem().getName().equals(""))) {            		
+            		images.add(new GameImage(((MapItem) inventory[i].item).getImageToRender(), 268 + (i * 64), 434));
+            	}
             }
             if (i + 1 == selectedItem) {
                 images.add(new GameImage(IOUtils.load("Images", "item_Selected.png"), 268 + (i * 64), 434));
