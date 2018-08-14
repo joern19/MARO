@@ -23,7 +23,6 @@ public class TileManager {
     private HashMap<String, BufferedImage> tileImages;
     private Point currMapPosition;
 
-    //private static int[][] map;
     private static int[][] mapMap;
 
     public TileManager() {
