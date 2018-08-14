@@ -39,17 +39,17 @@ public class Player {
 
     private void SetYPosition(boolean MoveUp) {
         if (MoveUp) {
-            this.YPosition = this.YPosition - 64;
+            this.YPosition = this.YPosition - 3;
         } else {
-            this.YPosition = this.YPosition + 64;
+            this.YPosition = this.YPosition + 3;
         }
     }
 
     private void SetXPosition(boolean MoveRight) {
         if (MoveRight) {
-            this.XPosition = this.XPosition + 64;
+            this.XPosition = this.XPosition + 3;
         } else {
-            this.XPosition = this.XPosition - 64;
+            this.XPosition = this.XPosition - 3;
         }
     }
 
