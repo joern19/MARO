@@ -101,6 +101,7 @@ public class TileManager {
                 default:
                     break;
             }
+            MapID = mapMap[(int) currMapPosition.getX()][(int) (currMapPosition.getY())];
             lastMap = MapID;
         } catch (ArrayIndexOutOfBoundsException e) {
             return false;
@@ -109,6 +110,7 @@ public class TileManager {
     }
 
     public void loadMap(Integer mapId) {
+        System.out.println(mapId);
         maps.put(lastMap, new Map(map1, obstacle1));
         GameManager.getInstance().clearNpc();
         GameManager.getInstance().spawnNpc();
@@ -203,7 +205,7 @@ public class TileManager {
                     {Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS},
                     {Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS},
                     {Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS},
-                    {Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS},},new Tile[][]{
+                    {Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS},}, new Tile[][]{
                     {Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY},
                     {Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY},
                     {Tile.IS_EMPTY, Tile.STONE, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY},
@@ -222,7 +224,7 @@ public class TileManager {
                     {Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS},
                     {Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS},
                     {Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS},
-                    {Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS},},new Tile[][]{
+                    {Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS},}, new Tile[][]{
                     {Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY},
                     {Tile.IS_EMPTY, Tile.STONE, Tile.STONE, Tile.STONE, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY},
                     {Tile.IS_EMPTY, Tile.STONE, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY},
@@ -241,7 +243,7 @@ public class TileManager {
                     {Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS},
                     {Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS},
                     {Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS},
-                    {Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS},},new Tile[][]{
+                    {Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS, Tile.GRASS},}, new Tile[][]{
                     {Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY},
                     {Tile.IS_EMPTY, Tile.STONE, Tile.STONE, Tile.STONE, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY},
                     {Tile.IS_EMPTY, Tile.STONE, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY},
@@ -272,6 +274,8 @@ public class TileManager {
                     {Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY},
                     {Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY, Tile.IS_EMPTY},};
         }
+        map1 = maps.get(mapId).getMaps();
+        obstacle1 = maps.get(mapId).getObstacles();
     }
 
     public static Tile[][] getObstacles() {
@@ -373,7 +377,7 @@ public class TileManager {
 
     }
 
-    public class Map {
+    private class Map {
 
         private Tile[][] map;
         private Tile[][] obstacles;
