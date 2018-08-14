@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import Manager.GameManager;
-import Manager.TileManager.Tile;
 import Rendering.GameImage;
 import Rendering.GameText;
 import Rendering.IOUtils;
@@ -42,7 +41,14 @@ public class Inventory {
     }
     
     public void removeCurrentItem() {
-    	inventory[selectedItem] = new InventoryItem(new Item("", false, false), 1);
+    	InventoryItem i = getInventory(selectedItem - 1);
+    	if(i != null) {    		
+    		if(i.amount >= 2) {
+    			i.amount--;
+    		} else {
+    			setInventoryPos(selectedItem - 1, null);
+    		}
+    	}
     }
 
     public void setCoins(int coins) {
@@ -113,10 +119,8 @@ public class Inventory {
 
         for (int i = 0; i < inventory.length; i++) {
             if (inventory[i] != null) {
-            	if(!(inventory[i].getItem().getName().equals(""))) {            		
-            		images.add(new GameImage(((MapItem) inventory[i].item).getImageToRender(), 268 + (i * 64), 434));
-            	}
-            }
+            	images.add(new GameImage(((MapItem) inventory[i].item).getImageToRender(), 268 + (i * 64), 434));
+            } 
             if (i + 1 == selectedItem) {
                 images.add(new GameImage(IOUtils.load("Images", "item_Selected.png"), 268 + (i * 64), 434));
             }
@@ -143,7 +147,6 @@ public class Inventory {
     }
 
     public class InventoryItem {
-
         public Item item;
         public int amount;
 
@@ -155,5 +158,9 @@ public class Inventory {
         public Item getItem() {
             return item;
         }
+        
+        public int getAmount() {
+			return amount;
+		}
     }
 }
