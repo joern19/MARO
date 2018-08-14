@@ -59,7 +59,6 @@ public class ItemManager {
         if (currentItem instanceof MapItem) {
             MapItem mi = (MapItem) currentItem;
             if (mi.getName().equals("Bomb")) {
-                System.out.println("used the bomb");
                 Player currentPlayer = GameManager.getInstance().GetPlayer();
                 int x = currentPlayer.GetXPosition() / 64;
                 int y = currentPlayer.GetYPosition() / 64;
@@ -80,7 +79,6 @@ public class ItemManager {
                         return;
                 }    
                 Tile toDestroy = TileManager.getObstacal(y, x);
-                System.out.println("used bomb at X" + x + " Y:" + y);
                 if (toDestroy.isObstacal()) {
                     TileManager.RemoveObstacle(y, x);
                     //remove Inventory Item..

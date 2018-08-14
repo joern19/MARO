@@ -80,29 +80,21 @@ public class Player {
 
 //MOVEMENT
     public void MoveUP() {
-        System.out.println("X" + XPosition / 64);
-        System.out.println("y" + YPosition / 64);
         this.currentDirection = Movement.Up;
         this.SetYPosition(true);
     }
 
     public void MoveDown() {
-        System.out.println("X" + XPosition / 64);
-        System.out.println("y" + YPosition / 64);
         this.currentDirection = Movement.Down;
         this.SetYPosition(false);
     }
 
     public void MoveRight() {
-        System.out.println("X" + XPosition / 64);
-        System.out.println("y" + YPosition / 64);
         this.currentDirection = Movement.Right;
         this.SetXPosition(true);
     }
 
     public void MoveLeft() {
-        System.out.println("X" + XPosition / 64);
-        System.out.println("y" + YPosition / 64);
         this.currentDirection = Movement.Left;
         this.SetXPosition(false);
     }
