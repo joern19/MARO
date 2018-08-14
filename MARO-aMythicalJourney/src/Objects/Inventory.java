@@ -46,7 +46,7 @@ public class Inventory {
     		if(i.amount >= 2) {
     			i.amount--;
     		} else {
-    			setInventoryPos(selectedItem - 1, null);
+    			inventory[selectedItem - 1] =  null;
     		}
     	}
     }
