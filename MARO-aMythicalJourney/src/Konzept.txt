@@ -1,0 +1,10 @@
+									Maro
+									
+Das Konzept von Maro wird in diesen Dokument festgehalten.
+
+
+Sind des Games ist es eine Zelda v. 0.0.0.0.1 herzustellen.
+
+Was muss man tun?
+	- Man muss im echten Zenda Spiel "Zenda" befreien und gegen verschieden Bosse und Mobs zu kämpfen.
+	

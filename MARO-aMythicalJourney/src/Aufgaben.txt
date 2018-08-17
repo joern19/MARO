@@ -1,0 +1,4 @@
+- Colision check bei NPC's verbessern.
+- Neue Items erstellen ( Schwert , Karte, Bow, Schild )
+- Die Methode dropRandomCoins muss eine Coin Grafhic noch rendern
+- Chance das wenn ein Stone zerstört wird auf 10% regulieren 

@@ -94,7 +94,6 @@ public class CollisionManager {
 				return true;
 			}
 		}
-		
 		return false;
 	}
 	
@@ -105,7 +104,6 @@ public class CollisionManager {
 				return true;
 			}
 		}
-
 		return false;
 	}
 
@@ -114,7 +112,6 @@ public class CollisionManager {
 			if(npc.getBoundingBox().intersects(player.getBoundingBox())) {
 				return true;
 			}
-
 		return false;
 	}
 	

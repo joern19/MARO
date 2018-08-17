@@ -378,7 +378,6 @@ public class TileManager {
     }
 
     private class Map {
-
         private Tile[][] map;
         private Tile[][] obstacles;
 
