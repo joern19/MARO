@@ -9,23 +9,23 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.FloatControl;
 
 public class SoundManager {
-
+	
     private float MASTER_VOLUME = 1.0f;
-
+    
     private static SoundManager instance;
     private static HashMap<Sound, Clip> list;
-
+    
     public static SoundManager getInstance() {
         if (instance == null) {
             instance = new SoundManager();
         }
         return instance;
     }
-
+    
     public SoundManager() {
         list = new HashMap<>();
     }
-
+    
     private void loadSound(Sound sound) {
         if (!list.containsKey(sound)) {
             try {
@@ -45,7 +45,7 @@ public class SoundManager {
             }
         }
     }
-
+    
     public void setVolume(float volume) {
         this.MASTER_VOLUME = volume;
     }
@@ -60,7 +60,7 @@ public class SoundManager {
             ex.printStackTrace();
         }
     }
-
+    
     public enum Sound {
 
         TEST("/Sounds/glassbell.wav"),

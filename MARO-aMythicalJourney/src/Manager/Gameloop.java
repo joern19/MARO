@@ -25,7 +25,6 @@ public class Gameloop implements Runnable {
 	//private int sound;
 
 	public Gameloop() {
-		
 		gameframe = new GameFrame("MARO", 64 * 12, (64 * 8) + 20);
 		GameManager.getInstance().initInputManager(gameframe);
 		

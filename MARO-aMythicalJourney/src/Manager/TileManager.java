@@ -13,11 +13,11 @@ import Rendering.IOUtils;
 public class TileManager {
 
     private int lastMap = 1;
-    public static String gStone = "stone.png";// Name Bild
-    public static String gGrass = "grass.png";
-    public static String gWater = "water.png";
-    public static String gTree1 = "tree_0.png";
-    public static String gTree2 = "tree_1.png";
+    private static String gStone = "stone.png";// Name Bild
+    private static String gGrass = "grass.png";
+    private static String gWater = "water.png";
+    private static String gTree1 = "tree_0.png";
+    private static String gTree2 = "tree_1.png";
     private static Tile[][] map1;
     private static Tile[][] obstacle1;
     private static Integer MapID = 1;
