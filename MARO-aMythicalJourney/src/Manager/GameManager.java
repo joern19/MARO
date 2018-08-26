@@ -235,6 +235,7 @@ public class GameManager implements InputListener {
                 }
             }
         }
+        Player.MovementTimer.setPosition();
     }
 
     // 12 x 8 Feld

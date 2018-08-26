@@ -1,13 +1,15 @@
 package Objects;
 
+import Manager.GameManager;
+import Manager.InputManager;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import Rendering.IOUtils;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Player {
-
-    private int XPosition;
 
     public enum Movement {
         Left, Right, Up, Down
@@ -15,6 +17,7 @@ public class Player {
 
     private Movement currentDirection = Movement.Right;
     private int YPosition;
+    private int XPosition;
     private float Health = 10;
     private String Name;
     private String PlayerImageNames[];
@@ -80,23 +83,41 @@ public class Player {
 
 //MOVEMENT
     public void MoveUP() {
+        if (this.currentDirection == Movement.Up) {
+            MovementTimer.init(currentDirection);
+            (new MovementTimer()).start();
+            //this.SetYPosition(true);
+            return;
+        }
         this.currentDirection = Movement.Up;
-        this.SetYPosition(true);
     }
 
     public void MoveDown() {
+        if (this.currentDirection == Movement.Down) {
+            MovementTimer.init(currentDirection);
+            (new MovementTimer()).start();
+            //this.SetYPosition(false);
+            return;
+        }
         this.currentDirection = Movement.Down;
-        this.SetYPosition(false);
     }
 
     public void MoveRight() {
+        if (this.currentDirection == Movement.Right) {
+            MovementTimer.init(currentDirection);
+            (new MovementTimer()).start();
+            //this.SetXPosition(true);
+        }
         this.currentDirection = Movement.Right;
-        this.SetXPosition(true);
     }
 
     public void MoveLeft() {
+        if (this.currentDirection == Movement.Left) {
+            MovementTimer.init(currentDirection);
+            (new MovementTimer()).start();
+            //this.SetXPosition(false);
+        }
         this.currentDirection = Movement.Left;
-        this.SetXPosition(false);
     }
 
     public void setPlayerDirection(Movement movement) {
@@ -144,6 +165,70 @@ public class Player {
                     PlayerImages[0] = IOUtils.load("Images", PlayerImageNames[0]);
                 }
                 return PlayerImages[0];
+        }
+    }
+
+    public static class MovementTimer extends Thread {
+
+        private static int start;
+
+        private static int time;
+        private static final int SPEED = 1000;//ms
+        private static int status;
+
+        private static boolean horizontal = true;//x
+        private static int multiplier = 1;
+
+        public static void init(Movement m) {
+            status = 0;
+            switch (m) {
+                case Right:
+                    start = GameManager.getInstance().GetPlayer().GetXPosition();
+                    multiplier = 1;
+                    horizontal = true;
+                    break;
+                case Down:
+                    start = GameManager.getInstance().GetPlayer().GetYPosition();
+                    multiplier = 1;
+                    horizontal = false;
+                    break;
+                case Up:
+                    start = GameManager.getInstance().GetPlayer().GetYPosition();
+                    horizontal = false;
+                    multiplier = -1;
+                    break;
+                case Left:
+                    start = GameManager.getInstance().GetPlayer().GetXPosition();
+                    horizontal = true;
+                    multiplier = -1;
+                    break;
+            }
+        }
+
+        @Override
+        public void run() {
+            InputManager.blockInput = true;
+            try {
+                for (time = 0; time < SPEED; time++) {
+                    status = time;
+                    Thread.sleep(1);
+                }
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            status = SPEED;
+            setPosition();
+            InputManager.blockInput = false;
+        }
+
+        public static void setPosition() {
+            int px = ((int) Math.round(((double)status / SPEED) * 64));
+            System.out.println(px);
+            if (horizontal) {
+                GameManager.getInstance().GetPlayer().setXPosition(start + (multiplier * px));
+            } else {
+                GameManager.getInstance().GetPlayer().setYPosition(start + (multiplier * px));
+            }
         }
     }
 }
