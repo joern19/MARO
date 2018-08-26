@@ -21,6 +21,10 @@ public class Boat extends MapItem {
 		return currentMovement;
 	}
 	
+	public void MoveUP() {
+		
+	}
+	
 	public String getSprint() {
 		
 		switch(currentMovement) {
@@ -33,7 +37,6 @@ public class Boat extends MapItem {
 			return boatpicture[2];
 		case RIGHT:
 			return boatpicture[3];
-		
 		}
 		
 		return boatpicture[1];

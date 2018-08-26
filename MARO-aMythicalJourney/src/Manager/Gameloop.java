@@ -18,10 +18,12 @@ public class Gameloop implements Runnable {
 
 	private boolean running = true;
 
-	private long lastLoopTime = System.nanoTime();
-	private final int TARGET_FPS = 60;
-	private final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
-	private double lastFpsTime;
+	int fps  =0, ticks = 0;
+	long fpsTimer = System.currentTimeMillis();
+	double noPerUpdate = 1000000000.0 / 60;
+	
+	double then = System.nanoTime();
+	double unProcessed = 0;
 	//private int sound;
 
 	public Gameloop() {
@@ -50,26 +52,38 @@ public class Gameloop implements Runnable {
 		
 		gameframe.setVisible(true);
 
-		while (running) {
-			long now = System.nanoTime();
-			long updateLength = now - lastLoopTime;
-			lastLoopTime = now;
-			double delta = updateLength / ((double) OPTIMAL_TIME);
-
-			this.lastFpsTime += updateLength;
-
-			if (lastFpsTime >= 1000000000) {
-				lastFpsTime = 0;
-			}
-
-			doGameUpdates(delta);
+		while(running) {
+		
+		boolean render = false;
+		double now = System.nanoTime();
+		unProcessed += (now - then) / noPerUpdate;
+		then = now;
+		
+		while(unProcessed >= -1) {
+			ticks ++;
+			doGameUpdates(ticks);
+			unProcessed--;
+			render = true;
+		}
+		
+		if(render) {
+			fps++;
 			render();
-
+			render = false;
+		} else {
 			try {
-				Thread.sleep(100);
-			} catch (Exception ex) {
-				// System.out.println(ex.getMessage());
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
+		}
+		
+		if(System.currentTimeMillis() - fpsTimer > 1000) {
+			gameframe.renameTitle("MARO - FPS: " + fps + " Ticks: " + ticks);
+			fps = 0;
+			ticks = 0;
+			fpsTimer += 1000;
+		}
 		}
 	}
 

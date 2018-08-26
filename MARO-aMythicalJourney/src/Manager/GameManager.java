@@ -111,6 +111,11 @@ public class GameManager implements InputListener {
     public GameImage getPlayerToRender() {
         return new GameImage(PlayerOne.getSprite(), PlayerOne.GetXPosition(), PlayerOne.GetYPosition());
     }
+    
+    public GameImage getBoatToRender() {
+    	// return new GameImage(image, xPos, yPos);
+    	return null;
+    }
 
     public ArrayList<GameImage> getInventoryToRender() {
         if (showInventory) {

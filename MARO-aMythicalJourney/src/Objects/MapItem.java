@@ -13,8 +13,7 @@ public class MapItem extends Item {
 	private int height;
 	private BufferedImage image;
 	
-	public MapItem(String name, boolean consumable, boolean stackable, int x, int y, int width, 
-			int height, String imageName) {
+	public MapItem(String name, boolean consumable, boolean stackable, int x, int y, int width, int height, String imageName) {
 		super(name, consumable, stackable);
 		
 		this.x = x;

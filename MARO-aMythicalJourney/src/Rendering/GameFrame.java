@@ -54,5 +54,9 @@ public class GameFrame extends JFrame {
 	public void removeAllImages() {
 		gpanel.removeAllImages();
 	}
+	
+	public void renameTitle(String name) {
+		setTitle(name);
+	}
 
 }
