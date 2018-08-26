@@ -6,6 +6,7 @@ import java.awt.event.KeyListener;
 
 public class InputManager implements KeyListener {
 
+    public static boolean blockInput = false;
     private static InputManager instance = null;
     private static Event event;
     private Frame gframe;
@@ -34,6 +35,9 @@ public class InputManager implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        if (blockInput) {
+            return;
+        }
         if (e.getKeyCode() == KeyEvent.VK_W) {
             listener.onPlayerMove(Event.MOVE_UP);
         } else if (e.getKeyCode() == KeyEvent.VK_A) {
