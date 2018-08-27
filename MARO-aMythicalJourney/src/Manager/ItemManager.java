@@ -85,6 +85,9 @@ public class ItemManager {
                     Inventory.getInstance().removeCurrentItem();
                 }
             }
+            if(mi.getName().equals("Boat")) {
+            	GameManager.getInstance().GetPlayer().toggleCanWhaterWalk();
+            }
         }
     }
 }
