@@ -172,8 +172,7 @@ public class Player {
 
         private static int start;
 
-        private static int time;
-        private static final int SPEED = 1000;//ms
+        private static final int SPEED = 250;//ms
         private static int status;
 
         private static boolean horizontal = true;//x
@@ -209,7 +208,7 @@ public class Player {
         public void run() {
             InputManager.blockInput = true;
             try {
-                for (time = 0; time < SPEED; time++) {
+                for (int time = 0; time < SPEED; time++) {
                     status = time;
                     Thread.sleep(1);
                 }
@@ -223,7 +222,6 @@ public class Player {
 
         public static void setPosition() {
             int px = ((int) Math.round(((double)status / SPEED) * 64));
-            System.out.println(px);
             if (horizontal) {
                 GameManager.getInstance().GetPlayer().setXPosition(start + (multiplier * px));
             } else {

@@ -20,7 +20,7 @@ public class Gameloop implements Runnable {
 
 	int fps  =0, ticks = 0;
 	long fpsTimer = System.currentTimeMillis();
-	double noPerUpdate = 1000000000.0 / 60;
+	double noPerUpdate = 1000000000.0 / 600;
 	
 	double then = System.nanoTime();
 	double unProcessed = 0;
