@@ -214,7 +214,7 @@ public class Player {
                     Thread.sleep(1);
                 }
             } catch (InterruptedException ex) {
-                Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+              //     Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
             }
             status = SPEED;
             setPosition();

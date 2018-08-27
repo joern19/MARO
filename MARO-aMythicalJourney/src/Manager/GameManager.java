@@ -12,6 +12,7 @@ import Manager.TileManager.Tile;
 import Npc.Goblin;
 import Npc.NPC;
 import Npc.Spider;
+import Objects.Boat;
 import Objects.Inventory;
 import Objects.Item;
 import Objects.MapItem;
@@ -34,6 +35,8 @@ public class GameManager implements InputListener {
     private ItemManager itemManager;
     private Boolean showInventory;
     private Boolean inMenu = false;
+    
+    private Boat boat;
 
     private GameManager() {
         //GameSaver.loadFile();
@@ -42,6 +45,8 @@ public class GameManager implements InputListener {
         events = new ArrayList<Event>();
         npcs = new ArrayList<NPC>();
 
+        boat = new Boat(320, 200);
+        
         npcs.add(new Spider(128, 128));
         npcs.add(new Goblin(64, 64));
 
@@ -95,6 +100,14 @@ public class GameManager implements InputListener {
             return Manager;
         }
     }
+    
+    public Boat getBoat() {
+		return boat;
+	}
+    
+    public void setBoat(Boat boat) {
+		this.boat = boat;
+	}
 
     public void SetPlayer(Player Player) {
         PlayerOne = Player;
@@ -102,7 +115,7 @@ public class GameManager implements InputListener {
 
     public Player GetPlayer() {
         return PlayerOne;
-    }
+    } 
 
     public Item getSelectedItem() {
         return Inventory.getInstance().getInventory(Inventory.getInstance().getSelectedItem()).getItem();
@@ -113,8 +126,7 @@ public class GameManager implements InputListener {
     }
     
     public GameImage getBoatToRender() {
-    	// return new GameImage(image, xPos, yPos);
-    	return null;
+    	return new GameImage(boat.getSprint(), boat.getX(), boat.getY());
     }
 
     public ArrayList<GameImage> getInventoryToRender() {

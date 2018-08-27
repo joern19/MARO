@@ -39,51 +39,51 @@ public class Gameloop implements Runnable {
 
 	@Override
 	public void run() {
-		
+
 		startFrame.run();
-		
+
 		/*beim Fensterschlieen*/
-		
+
 		//gibt den neu erstellten Spieler als String zurck
 		startFrame.getNewPlayerName();
-		
+
 		//gibt den geladenen Spieler als String zurck
 		startFrame.getLoadedPlayerName();
-		
+
 		gameframe.setVisible(true);
 
 		while(running) {
-		
-		boolean render = false;
-		double now = System.nanoTime();
-		unProcessed += (now - then) / noPerUpdate;
-		then = now;
-		
-		while(unProcessed >= -1) {
-			ticks ++;
-			doGameUpdates(ticks);
-			unProcessed--;
-			render = true;
-		}
-		
-		if(render) {
-			fps++;
-			render();
-			render = false;
-		} else {
-			try {
-				Thread.sleep(50);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+
+			boolean render = false;
+			double now = System.nanoTime();
+			unProcessed += (now - then) / noPerUpdate;
+			then = now;
+
+			while(unProcessed >= -1) {
+				ticks ++;
+				doGameUpdates(ticks);
+				unProcessed--;
+				render = true;
 			}
-		}
-		
-		if(System.currentTimeMillis() - fpsTimer > 1000) {
-			gameframe.renameTitle("MARO - FPS: " + fps + " Ticks: " + ticks);
-			fps = 0;
-			ticks = 0;
-			fpsTimer += 1000;
-		}
+
+			if(render) {
+				fps++;
+				render();
+				render = false;
+			} else {
+				try {
+					Thread.sleep(50);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+
+			if(System.currentTimeMillis() - fpsTimer > 1000) {
+				gameframe.renameTitle("MARO - FPS: " + fps + " Ticks: " + ticks);
+				fps = 0;
+				ticks = 0;
+				fpsTimer += 1000;
+			}
 		}
 	}
 
@@ -91,7 +91,6 @@ public class Gameloop implements Runnable {
 		List<GameImage> list = GameManager.getInstance().GetObjectsToRender(TileManager.getMap());
 		gameframe.setMapImages(list);
 		list = GameManager.getInstance().GetObjectsToRender(TileManager.getObstacles());
-		gameframe.setImages(list);		
 		
 		//NPCs rendern
 		list.addAll(GameManager.getInstance().getNPCsToRender());
@@ -102,8 +101,12 @@ public class Gameloop implements Runnable {
 		// PLAYER
 		list.add(GameManager.getInstance().getPlayerToRender());
 		
+		// BOAT
+		list.add(GameManager.getInstance().getBoatToRender());
+		
 		//INVENTORY
 		list.addAll(GameManager.getInstance().getInventoryToRender());
+		gameframe.setImages(list);		
 		
 		List<GameText> textList = new ArrayList<GameText>();
 		textList.add(GameManager.getInstance().getCoinsToRender());
