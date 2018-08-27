@@ -31,9 +31,9 @@ class GamePanel extends JPanel {
 			g.drawImage(mapImages.getImage(), mapImages.getxPos(), mapImages.getyPos(), this);
 		}
 
-		for (GameImage gimg : images) {
-			g.drawImage(gimg.getImage(), gimg.getxPos(), gimg.getyPos(), this);
-		}
+                images.forEach((gimg) -> {
+                    g.drawImage(gimg.getImage(), gimg.getxPos(), gimg.getyPos(), this);
+            });
 		
 		for (GameText gameText : text) {			
 			 g.setColor(gameText.getColor());
