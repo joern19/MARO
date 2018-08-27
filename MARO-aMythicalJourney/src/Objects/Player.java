@@ -6,8 +6,6 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import Rendering.IOUtils;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Player {
 
@@ -22,6 +20,7 @@ public class Player {
     private String Name;
     private String PlayerImageNames[];
     private BufferedImage PlayerImages[];
+    private boolean canWhaterWalk;
 
     public Player(int XPos, int YPos, String PlayerName) {
         this.XPosition = XPos;
@@ -29,6 +28,7 @@ public class Player {
         this.Name = PlayerName;
         this.PlayerImageNames = new String[]{"link_right.png", "link_left.png", "link_right.png", "link_top.png", "link_back.png"};
         this.PlayerImages = new BufferedImage[5];
+        this.canWhaterWalk = false;
     }
 
 //SETTER
@@ -56,6 +56,10 @@ public class Player {
         }
     }
 
+    public void toggleCanWhaterWalk() {
+		this.canWhaterWalk = !canWhaterWalk;
+	}
+    
     public void setHealth(float health) {
         this.Health = health;
     }
@@ -80,6 +84,10 @@ public class Player {
     public float GetHealth() {
         return this.Health;
     }
+    
+    public boolean isCanWhaterWalk() {
+		return canWhaterWalk;
+	}
 
 //MOVEMENT
     public void MoveUP() {

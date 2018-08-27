@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
+import Manager.TileManager.Tile;
 import Npc.NPC;
 import Objects.Inventory;
 import Objects.Item;
@@ -91,7 +92,11 @@ public class CollisionManager {
 	public boolean collidesWithObstacle(Player player, List<GameImage> gameImages) {
 		for(int i=0; i<gameImages.size(); i++) {
 			if(player.getBoundingBox().intersects(gameImages.get(i).getBoundingBox())) {
-				return true;
+				if(GameManager.getInstance().getTiles().getTileFromMap(gameImages.get(i).getyPos(), gameImages.get(i).getxPos()) == Tile.WATER && GameManager.getInstance().GetPlayer().isCanWhaterWalk()) {					
+					return false;
+				}else {
+					return true;
+				}
 			}
 		}
 		return false;
