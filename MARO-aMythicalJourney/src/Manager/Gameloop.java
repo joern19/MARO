@@ -20,14 +20,14 @@ public class Gameloop implements Runnable {
 
 	int fps  =0, ticks = 0;
 	long fpsTimer = System.currentTimeMillis();
-	double noPerUpdate = 1000000000.0 / 60;
+	double noPerUpdate = 1000000000.0 / 600;
 	
 	double then = System.nanoTime();
 	double unProcessed = 0;
 	//private int sound;
 
 	public Gameloop() {
-		gameframe = new GameFrame("MARO", 64 * 12, (64 * 8) + 20);
+		gameframe = new GameFrame("MARO", 64 * 12, (64 * 8) + 28);
 		GameManager.getInstance().initInputManager(gameframe);
 		
 		startFrame = new StartFrame("MARO - StartScreen", new String[] {"Test"});

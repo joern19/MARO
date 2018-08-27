@@ -10,7 +10,7 @@ import javax.sound.sampled.FloatControl;
 
 public class SoundManager {
 	
-    private float MASTER_VOLUME = 1.0f;
+    private float MASTER_VOLUME = 0.1f;
     
     private static SoundManager instance;
     private static HashMap<Sound, Clip> list;
