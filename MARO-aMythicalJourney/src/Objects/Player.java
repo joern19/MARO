@@ -1,13 +1,12 @@
 package Objects;
 
+import Manager.CollisionManager;
 import Manager.GameManager;
 import Manager.InputManager;
+import Rendering.IOUtils;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-
-import Rendering.IOUtils;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Player {
 
@@ -15,7 +14,7 @@ public class Player {
         Left, Right, Up, Down
     }
 
-    private Movement currentDirection = Movement.Right;
+    private Movement currentDirection = Movement.Up;
     private int YPosition;
     private int XPosition;
     private float Health = 10;
@@ -38,22 +37,6 @@ public class Player {
 
     public void setYPosition(int yPosition) {
         YPosition = yPosition;
-    }
-
-    private void SetYPosition(boolean MoveUp) {
-        if (MoveUp) {
-            this.YPosition = this.YPosition - 3;
-        } else {
-            this.YPosition = this.YPosition + 3;
-        }
-    }
-
-    private void SetXPosition(boolean MoveRight) {
-        if (MoveRight) {
-            this.XPosition = this.XPosition + 3;
-        } else {
-            this.XPosition = this.XPosition - 3;
-        }
     }
 
     public void setHealth(float health) {
@@ -83,39 +66,37 @@ public class Player {
 
 //MOVEMENT
     public void MoveUP() {
-        if (this.currentDirection == Movement.Up) {
+        if (this.currentDirection == Movement.Up && !CollisionManager.playerCollidesWithObstacle()) {
             MovementTimer.init(currentDirection);
             (new MovementTimer()).start();
-            //this.SetYPosition(true);
             return;
         }
         this.currentDirection = Movement.Up;
     }
 
     public void MoveDown() {
-        if (this.currentDirection == Movement.Down) {
+        if (this.currentDirection == Movement.Down && !CollisionManager.playerCollidesWithObstacle()) {
             MovementTimer.init(currentDirection);
             (new MovementTimer()).start();
-            //this.SetYPosition(false);
             return;
         }
         this.currentDirection = Movement.Down;
     }
 
     public void MoveRight() {
-        if (this.currentDirection == Movement.Right) {
+        if (this.currentDirection == Movement.Right && !CollisionManager.playerCollidesWithObstacle()) {
             MovementTimer.init(currentDirection);
             (new MovementTimer()).start();
-            //this.SetXPosition(true);
+            return;
         }
         this.currentDirection = Movement.Right;
     }
 
     public void MoveLeft() {
-        if (this.currentDirection == Movement.Left) {
+        if (this.currentDirection == Movement.Left && !CollisionManager.playerCollidesWithObstacle()) {
             MovementTimer.init(currentDirection);
             (new MovementTimer()).start();
-            //this.SetXPosition(false);
+            return;
         }
         this.currentDirection = Movement.Left;
     }
@@ -131,6 +112,25 @@ public class Player {
 //COLLISION
     public Rectangle getBoundingBox() {
         return new Rectangle(XPosition + 1, YPosition + 1, 64 - 1, 64 - 1);
+    }
+
+    public Point getTileInFront() {
+        Point p = null;
+        switch (currentDirection) {
+            case Right:
+                p = new Point((XPosition / 64) + 1, YPosition / 64);
+                break;
+            case Left:
+                p = new Point((XPosition / 64) - 1, YPosition / 64);
+                break;
+            case Up:
+                p = new Point(XPosition / 64, (YPosition / 64) - 1);
+                break;
+            case Down:
+                p = new Point(XPosition / 64, (YPosition / 64) + 1);
+                break;
+        }
+        return p;
     }
 
 //GRAPHICS
@@ -213,7 +213,7 @@ public class Player {
                     Thread.sleep(1);
                 }
             } catch (InterruptedException ex) {
-              //     Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+                //     Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
             }
             status = SPEED;
             setPosition();
@@ -221,7 +221,10 @@ public class Player {
         }
 
         public static void setPosition() {
-            int px = ((int) Math.round(((double)status / SPEED) * 64));
+            if (InputManager.blockInput != true) {
+                return;
+            }
+            int px = ((int) Math.round(((double) status / SPEED) * 64));
             if (horizontal) {
                 GameManager.getInstance().GetPlayer().setXPosition(start + (multiplier * px));
             } else {

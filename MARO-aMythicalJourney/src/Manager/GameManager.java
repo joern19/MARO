@@ -35,18 +35,18 @@ public class GameManager implements InputListener {
     private ItemManager itemManager;
     private Boolean showInventory;
     private Boolean inMenu = false;
-    
+
     private Boat boat;
 
     private GameManager() {
         //GameSaver.loadFile();
         //PlayerOne = GameSaver.loadPlayer();
-        PlayerOne = new Player(64, 64 * 4, "");
+        PlayerOne = new Player(64 * 2, 64 * 4, "");
         events = new ArrayList<Event>();
         npcs = new ArrayList<NPC>();
 
         boat = new Boat(320, 200);
-        
+
         npcs.add(new Spider(128, 128));
         npcs.add(new Goblin(64, 64));
 
@@ -100,14 +100,14 @@ public class GameManager implements InputListener {
             return Manager;
         }
     }
-    
+
     public Boat getBoat() {
-		return boat;
-	}
-    
+        return boat;
+    }
+
     public void setBoat(Boat boat) {
-		this.boat = boat;
-	}
+        this.boat = boat;
+    }
 
     public void SetPlayer(Player Player) {
         PlayerOne = Player;
@@ -115,7 +115,7 @@ public class GameManager implements InputListener {
 
     public Player GetPlayer() {
         return PlayerOne;
-    } 
+    }
 
     public Item getSelectedItem() {
         return Inventory.getInstance().getInventory(Inventory.getInstance().getSelectedItem()).getItem();
@@ -124,9 +124,9 @@ public class GameManager implements InputListener {
     public GameImage getPlayerToRender() {
         return new GameImage(PlayerOne.getSprite(), PlayerOne.GetXPosition(), PlayerOne.GetYPosition());
     }
-    
+
     public GameImage getBoatToRender() {
-    	return new GameImage(boat.getSprint(), boat.getX(), boat.getY());
+        return new GameImage(boat.getSprint(), boat.getX(), boat.getY());
     }
 
     public ArrayList<GameImage> getInventoryToRender() {
@@ -199,23 +199,18 @@ public class GameManager implements InputListener {
             }
             for (int i = 0; i < events.size(); i++) {
                 Event event = events.remove(i);
-                Player curr = new Player(PlayerOne.GetXPosition(), PlayerOne.GetYPosition(), "");
                 switch (event) {
                     case MOVE_DOWN:
-                        curr.MoveDown();
-                        checkPlayerObstacleCollision(event, curr);
+                        PlayerOne.MoveDown();
                         break;
                     case MOVE_UP:
-                        curr.MoveUP();
-                        checkPlayerObstacleCollision(event, curr);
+                        PlayerOne.MoveUP();
                         break;
                     case MOVE_LEFT:
-                        curr.MoveLeft();
-                        checkPlayerObstacleCollision(event, curr);
+                        PlayerOne.MoveLeft();
                         break;
                     case MOVE_RIGHT:
-                        curr.MoveRight();
-                        checkPlayerObstacleCollision(event, curr);
+                        PlayerOne.MoveRight();
                         break;
                     case TRIGGER_INVENTORY:
                         showInventory = !showInventory;
@@ -238,6 +233,8 @@ public class GameManager implements InputListener {
                     case USE_ITEM:
                         ItemManager.useCurrentItem();
                         break;
+                    case INTERACT_WHIT_SOMTHING:
+                        break;
                     default:
                         break;
                 }
@@ -253,76 +250,6 @@ public class GameManager implements InputListener {
             }
         }
         Player.MovementTimer.setPosition();
-    }
-
-    // 12 x 8 Feld
-    private void checkPlayerObstacleCollision(Event event, Player currPlayer) {
-        if (!CollisionManager.getInstance().collidesWithObstacle(currPlayer, GetObjectsToRender(TileManager.getObstacles()))) {
-
-            switch (event) {
-                case MOVE_DOWN:
-                    PlayerOne.MoveDown();
-                    if (currPlayer.GetYPosition() + 64 > 8 * 64) {
-                        if (getTiles().changeMap(Movement.Down)) {
-                            PlayerOne.setYPosition(0);
-                        } else {
-                            PlayerOne.MoveUP();
-                        }
-                    }
-                    break;
-                case MOVE_UP:
-                    PlayerOne.MoveUP();
-                    if (currPlayer.GetYPosition() < 0) {
-                        if (getTiles().changeMap(Movement.Up)) {
-                            PlayerOne.setYPosition(7 * 64);
-                        } else {
-                            PlayerOne.MoveDown();
-                        }
-                    }
-                    break;
-                case MOVE_LEFT:
-                    PlayerOne.MoveLeft();
-                    if (currPlayer.GetXPosition() < 0) {
-                        if (getTiles().changeMap(Movement.Left)) {
-                            PlayerOne.setXPosition(11 * 64);
-                        } else {
-                            PlayerOne.MoveRight();
-                        }
-                    }
-                    break;
-                case MOVE_RIGHT:
-                    PlayerOne.MoveRight();
-                    if (currPlayer.GetXPosition() + 64 > 12 * 64) {
-                        if (getTiles().changeMap(Movement.Right)) {
-                            PlayerOne.setXPosition(0);
-                        } else {
-                            PlayerOne.MoveLeft();
-                        }
-                    }
-                    break;
-                default:
-                    break;
-            }
-        } else { // do not move, but change player direction
-            switch (event) {
-                case MOVE_DOWN:
-                    PlayerOne.setPlayerDirection(Movement.Down);
-                    break;
-                case MOVE_UP:
-                    PlayerOne.setPlayerDirection(Movement.Up);
-                    break;
-                case MOVE_LEFT:
-                    PlayerOne.setPlayerDirection(Movement.Left);
-                    break;
-                case MOVE_RIGHT:
-                    PlayerOne.setPlayerDirection(Movement.Right);
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        checkItemCollision();
     }
 
     private void checkItemCollision() {

@@ -1,5 +1,6 @@
 package EinSehrSchoenerStartBidlschirm;
 
+import Rendering.IOUtils;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Insets;
@@ -7,14 +8,11 @@ import java.awt.image.BufferedImage;
 import java.text.AttributedCharacterIterator.Attribute;
 import java.util.Map;
 
-import javax.swing.JPanel;
-
-import Rendering.IOUtils;
-
-import javax.swing.JLabel;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class StartPanel extends JPanel {
 
