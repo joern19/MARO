@@ -89,6 +89,22 @@ public class CollisionManager {
         return t.isObstacal();
     }
 
+    public boolean collidesWithObstacle(NPC npc, List<GameImage> gameImages) {
+        for (int i = 0; i < gameImages.size(); i++) {
+            if (npc.getBoundingBox().intersects(gameImages.get(i).getBoundingBox())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean collidesWithObstacle(NPC npc, Player player) {
+        if (npc.getBoundingBox().intersects(player.getBoundingBox())) {
+            return true;
+        }
+        return false;
+    }
+
     // collides with map item -> if consumable put in inventory
     public MapItem collidesWithMapItem(Player player, List<MapItem> mapItems) {
         if (mapItems != null) {
