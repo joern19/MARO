@@ -29,7 +29,7 @@ public class CollisionManager {
     public CollisionManager() {
         this.obstacles = new boolean[0][0];
 //		this.npc = new ArrayList<NPC>();
-        this.items = new ArrayList<Item>();
+        this.items = new ArrayList<>();
         this.tileSize = 64;
     }
 
@@ -68,7 +68,6 @@ public class CollisionManager {
 
     public Item getItemCollision() {
         Rectangle playerBBox = GameManager.getInstance().GetPlayer().getBoundingBox();
-
         for (int i = 0; i < this.items.size(); i++) {
             Item item = this.items.get(i);
 
@@ -84,43 +83,10 @@ public class CollisionManager {
         return null;
     }
 
-    // do not move if collides with obstacle
-    public boolean collidesWithObstacle(Player player, List<GameImage> gameImages) {
-        Point p = GameManager.getInstance().GetPlayer().getTileInFront();
-        Tile t = TileManager.getObstacal(p.y, p.x);
-        if (t != Tile.IS_EMPTY) {
-            return true;
-        }
-        for (int i = 0; i < gameImages.size(); i++) {
-            if (player.getBoundingBox().intersects(gameImages.get(i).getBoundingBox())) {
-                return true;
-            }
-        }
-        return false;
-    }
-    
     public static boolean playerCollidesWithObstacle() {
         Point p = GameManager.getInstance().GetPlayer().getTileInFront();
         Tile t = TileManager.getObstacal(p.y, p.x);
         return t.isObstacal();
-    }
-
-    // do not move if collides with obstacle
-    public boolean collidesWithObstacle(NPC npc, List<GameImage> gameImages) {
-        for (int i = 0; i < gameImages.size(); i++) {
-            if (npc.getBoundingBox().intersects(gameImages.get(i).getBoundingBox())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    // do not move if collides with obstacle
-    public boolean collidesWithObstacle(NPC npc, Player player) {
-        if (npc.getBoundingBox().intersects(player.getBoundingBox())) {
-            return true;
-        }
-        return false;
     }
 
     // collides with map item -> if consumable put in inventory
