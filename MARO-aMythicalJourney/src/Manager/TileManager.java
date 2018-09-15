@@ -68,7 +68,10 @@ public class TileManager {
                     if (mapMap[((int) currMapPosition.getX() + 1)][(int) currMapPosition.getY()] != -1) {
                         currMapPosition.x += 1;
                         loadMap(mapMap[(int) currMapPosition.getX()][(int) (currMapPosition.getY())]);
+                        GameManager.getInstance().GetPlayer().setYPosition(GameManager.getInstance().GetPlayer().GetYPosition() - 7 * 64);
                         result = true;
+                    } else {
+                        GameManager.getInstance().GetPlayer().setPlayerDirection(Movement.Up);
                     }
                     break;
                 case Up:
@@ -76,17 +79,21 @@ public class TileManager {
                         if (mapMap[((int) currMapPosition.getX() - 1)][(int) currMapPosition.getY()] != -1) {
                             currMapPosition.x -= 1;
                             loadMap(mapMap[(int) currMapPosition.getX()][(int) (currMapPosition.getY())]);
+                            GameManager.getInstance().GetPlayer().setYPosition(GameManager.getInstance().GetPlayer().GetYPosition() + 7 * 64);
                             result = true;
                         }
+                    } else {
+                        GameManager.getInstance().GetPlayer().setPlayerDirection(Movement.Down);
                     }
                     break;
                 case Right:
-                    if (currMapPosition.getY() < mapMap.length - 1) {
-                        if (mapMap[(int) currMapPosition.getX()][(int) (currMapPosition.getY() + 1)] != -1) {
-                            currMapPosition.y += 1;
-                            loadMap(mapMap[(int) currMapPosition.getX()][(int) (currMapPosition.getY())]);
-                            result = true;
-                        }
+                    if (mapMap[(int) currMapPosition.getX()][(int) (currMapPosition.getY() + 1)] != -1) {
+                        currMapPosition.y += 1;
+                        loadMap(mapMap[(int) currMapPosition.getX()][(int) (currMapPosition.getY())]);
+                        GameManager.getInstance().GetPlayer().setXPosition(GameManager.getInstance().GetPlayer().GetXPosition() - 11 * 64);
+                        result = true;
+                    } else {
+                        GameManager.getInstance().GetPlayer().setPlayerDirection(Movement.Left);
                     }
                     break;
                 case Left:
@@ -94,8 +101,11 @@ public class TileManager {
                         if (mapMap[(int) currMapPosition.getX()][(int) (currMapPosition.getY() - 1)] != -1) {
                             currMapPosition.y -= 1;
                             loadMap(mapMap[(int) currMapPosition.getX()][(int) (currMapPosition.getY())]);
+                            GameManager.getInstance().GetPlayer().setXPosition(GameManager.getInstance().GetPlayer().GetXPosition() + 11 * 64);
                             result = true;
                         }
+                    } else {
+                        GameManager.getInstance().GetPlayer().setPlayerDirection(Movement.Right);
                     }
                     break;
                 default:
@@ -109,8 +119,12 @@ public class TileManager {
         return result;
     }
 
+    public static boolean checkMapCollision() {
+        Point p = GameManager.getInstance().GetPlayer().getTileInFront();
+        return ((p.x == -1 || p.x == 12) || (p.y == -1 || p.y == 8));
+    }
+
     public void loadMap(Integer mapId) {
-        System.out.println(mapId);
         maps.put(lastMap, new Map(map1, obstacle1));
         GameManager.getInstance().clearNpc();
         GameManager.getInstance().spawnNpc();
@@ -378,6 +392,7 @@ public class TileManager {
     }
 
     private class Map {
+
         private Tile[][] map;
         private Tile[][] obstacles;
 

@@ -53,6 +53,7 @@ public class GameManager implements InputListener {
         inventory = Inventory.getInstance();
 
         itemManager = new ItemManager();
+        itemManager.addItem("1", new MapItem("Bomb", true, true, 0, 0, 64, 64, "bomb.png"));
         itemManager.addItem("2", new MapItem("Bomb", true, true, 320, 320, 64, 64, "bomb.png"));
         itemManager.addItem("2", new MapItem("Bomb", true, true, 320, 200, 64, 64, "bomb.png"));
         itemManager.addItem("2", new MapItem("Bomb", true, true, 270, 250, 64, 64, "bomb.png"));

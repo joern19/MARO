@@ -3,6 +3,7 @@ package Objects;
 import Manager.CollisionManager;
 import Manager.GameManager;
 import Manager.InputManager;
+import Manager.TileManager;
 import Rendering.IOUtils;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -42,9 +43,9 @@ public class Player {
     }
 
     public void toggleCanWhaterWalk() {
-		this.canWhaterWalk = !canWhaterWalk;
-	}
-    
+        this.canWhaterWalk = !canWhaterWalk;
+    }
+
     public void setHealth(float health) {
         this.Health = health;
     }
@@ -69,14 +70,18 @@ public class Player {
     public float GetHealth() {
         return this.Health;
     }
-    
+
     public boolean isCanWhaterWalk() {
-		return canWhaterWalk;
-	}
+        return canWhaterWalk;
+    }
 
 //MOVEMENT
     public void MoveUP() {
-        if (this.currentDirection == Movement.Up && !CollisionManager.playerCollidesWithObstacle()) {
+        if (this.currentDirection == Movement.Up) {
+            if (TileManager.checkMapCollision()) {
+                GameManager.getInstance().getTiles().changeMap(this.currentDirection);
+                return;
+            }
             MovementTimer.init(currentDirection);
             (new MovementTimer()).start();
             return;
@@ -85,28 +90,46 @@ public class Player {
     }
 
     public void MoveDown() {
-        if (this.currentDirection == Movement.Down && !CollisionManager.playerCollidesWithObstacle()) {
-            MovementTimer.init(currentDirection);
-            (new MovementTimer()).start();
-            return;
+        if (this.currentDirection == Movement.Down) {
+            if (TileManager.checkMapCollision()) {
+                GameManager.getInstance().getTiles().changeMap(this.currentDirection);
+                return;
+            }
+            if (!CollisionManager.playerCollidesWithObstacle()) {
+                MovementTimer.init(currentDirection);
+                (new MovementTimer()).start();
+                return;
+            }
         }
         this.currentDirection = Movement.Down;
     }
 
     public void MoveRight() {
-        if (this.currentDirection == Movement.Right && !CollisionManager.playerCollidesWithObstacle()) {
-            MovementTimer.init(currentDirection);
-            (new MovementTimer()).start();
-            return;
+        if (this.currentDirection == Movement.Right) {
+            if (TileManager.checkMapCollision()) {
+                GameManager.getInstance().getTiles().changeMap(this.currentDirection);
+                return;
+            }
+            if (!CollisionManager.playerCollidesWithObstacle()) {
+                MovementTimer.init(currentDirection);
+                (new MovementTimer()).start();
+                return;
+            }
         }
         this.currentDirection = Movement.Right;
     }
 
     public void MoveLeft() {
-        if (this.currentDirection == Movement.Left && !CollisionManager.playerCollidesWithObstacle()) {
-            MovementTimer.init(currentDirection);
-            (new MovementTimer()).start();
-            return;
+        if (this.currentDirection == Movement.Left) {
+            if (TileManager.checkMapCollision()) {
+                GameManager.getInstance().getTiles().changeMap(this.currentDirection);
+                return;
+            }
+            if (!CollisionManager.playerCollidesWithObstacle()) {
+                MovementTimer.init(currentDirection);
+                (new MovementTimer()).start();
+                return;
+            }
         }
         this.currentDirection = Movement.Left;
     }
@@ -223,7 +246,7 @@ public class Player {
                     Thread.sleep(1);
                 }
             } catch (InterruptedException ex) {
-              //     Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+                //     Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
             }
             status = SPEED;
             setPosition();
