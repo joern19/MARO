@@ -3,6 +3,7 @@ package Objects;
 import Manager.CollisionManager;
 import Manager.GameManager;
 import Manager.InputManager;
+import Manager.ItemManager;
 import Manager.TileManager;
 import Rendering.IOUtils;
 import java.awt.Point;
@@ -246,7 +247,7 @@ public class Player {
                     Thread.sleep(1);
                 }
             } catch (InterruptedException ex) {
-                //     Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
             }
             status = SPEED;
             setPosition();
@@ -262,6 +263,12 @@ public class Player {
                 GameManager.getInstance().GetPlayer().setXPosition(start + (multiplier * px));
             } else {
                 GameManager.getInstance().GetPlayer().setYPosition(start + (multiplier * px));
+            }
+            if (GameManager.getInstance().getItemManager().containCurrentMapItem()) {
+                Item i = CollisionManager.getInstance().getItemCollision();
+                if (i != null && i.isConsumable()) {
+                    Inventory.getInstance().addItem(i);
+                }
             }
         }
     }

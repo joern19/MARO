@@ -18,7 +18,7 @@ public class ItemManager {
     private HashMap<String, ArrayList<MapItem>> items;
 
     public ItemManager() {
-        items = new HashMap<String, ArrayList<MapItem>>();
+        items = new HashMap<>();
     }
 
     public void addItem(String key, MapItem item) {
@@ -34,6 +34,10 @@ public class ItemManager {
     public void removeItem(String key, MapItem item) {
         items.get(key).remove(item);
     }
+    
+    public void removeItem(String key, Item item) {
+        items.get(key).remove((MapItem) item);
+    }
 
     public List<GameImage> getItemsForMapToRender(String key) {
         ArrayList<MapItem> mapItems = items.get(key);
@@ -48,6 +52,10 @@ public class ItemManager {
 
     public List<MapItem> getItemsForMap(String key) {
         return items.get(key);
+    }
+    
+    public boolean containCurrentMapItem() {
+        return items.containsKey(TileManager.getMapID().toString());
     }
     
     public static void useCurrentItem() {

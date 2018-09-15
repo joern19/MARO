@@ -53,6 +53,7 @@ public class GameManager implements InputListener {
         inventory = Inventory.getInstance();
 
         itemManager = new ItemManager();
+        itemManager.addItem("0", new MapItem("Sword", true, false, 0, 0, 64, 64, "Coin.png"));
         itemManager.addItem("1", new MapItem("Bomb", true, true, 0, 0, 64, 64, "bomb.png"));
         itemManager.addItem("2", new MapItem("Bomb", true, true, 320, 320, 64, 64, "bomb.png"));
         itemManager.addItem("2", new MapItem("Bomb", true, true, 320, 200, 64, 64, "bomb.png"));
@@ -88,11 +89,7 @@ public class GameManager implements InputListener {
     public void setInMenu(Boolean inMenu) {
         this.inMenu = inMenu;
     }
-
-    public void RemoveObstacle(int indexOne, int indexTwo) {
-        Tile.RemoveObstacle(indexOne, indexTwo);
-    }
-
+    
     public static GameManager getInstance() {
 
         if (Manager == null) {
@@ -299,5 +296,9 @@ public class GameManager implements InputListener {
 
     public void clearNpc() {
         npcs.clear();
+    }
+    
+    public ItemManager getItemManager() {
+        return itemManager;
     }
 }

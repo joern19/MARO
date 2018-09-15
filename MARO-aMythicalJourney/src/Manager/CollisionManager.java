@@ -68,12 +68,11 @@ public class CollisionManager {
 
     public Item getItemCollision() {
         Rectangle playerBBox = GameManager.getInstance().GetPlayer().getBoundingBox();
-        for (int i = 0; i < this.items.size(); i++) {
-            Item item = this.items.get(i);
-
+        for (Item item : GameManager.getInstance().getItemManager().getItemsForMap(TileManager.getMapID().toString())) {
             Rectangle itemBBox = new Rectangle(((MapItem) item).getX(), ((MapItem) item).getY(), ((MapItem) item).getWidth(), ((MapItem) item).getHeight());
-
+            
             if (playerBBox.intersects(itemBBox)) {
+                GameManager.getInstance().getItemManager().removeItem(TileManager.getMapID().toString(), item);
                 //if (Inventory.addItem(item)) {
                 //	this.items.remove(i);
                 //}
